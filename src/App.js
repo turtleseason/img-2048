@@ -7,7 +7,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import Game from './Game';
+import Game from './game/Game';
 import ImageDialog from './ImageDialog';
 import SettingsDrawer from './SettingsDrawer';
 
