@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import Box from '@material-ui/core/Box';
+import { TransitionGroup } from 'react-transition-group';
+
 import { useMountEffect } from '../hooks/useMountEffect';
 import { Tile } from '../types/tile';
 import { arrowKeys, BASE_VALUE, colFromIndex, getNextValue, getOpenPosition, move, PUZZLE_SIZE, rowFromIndex } from './GameLogic';
 import GameTile from './GameTile';
-import { TransitionGroup } from 'react-transition-group';
 
 const prefetchImages = () => {
     for (const i of [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]) {
@@ -23,7 +24,7 @@ export default function GameBoard({ onWin, onLose }: Props) {
     const [nextId, setNextId] = useState(1);
     const [canMove, setCanMove] = useState(false);
 
-    const spawnTile = (tiles: (Tile | null)[]) => {
+    const spawnTile = useCallback((tiles: (Tile | null)[]) => {
         const pos = getOpenPosition(tiles);
 
         const newTiles = tiles.slice();
@@ -35,9 +36,9 @@ export default function GameBoard({ onWin, onLose }: Props) {
             onLose();
         }
         return newTiles;
-    };
+    }, [nextId, onLose]);
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
+    const handleKeyDown = useCallback((e: KeyboardEvent) => {
         if (e.key in arrowKeys) {
             e.preventDefault();
 
@@ -61,7 +62,7 @@ export default function GameBoard({ onWin, onLose }: Props) {
                 }
             }
         }
-    };
+    }, [canMove, onWin, spawnTile, tiles]);
 
     useMountEffect(() => {
         prefetchImages();
@@ -69,12 +70,16 @@ export default function GameBoard({ onWin, onLose }: Props) {
         setCanMove(true);
     });
 
+    useEffect(() => {
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [handleKeyDown]);
+
     const tileSize = 100;
     const tileSpacing = 10;
 
     return (
         <Box
-            onKeyDown={handleKeyDown}
             tabIndex={-1}
             width={PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing}
             height={PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing}
