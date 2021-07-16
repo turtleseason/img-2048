@@ -30,7 +30,6 @@ export default function Game() {
                 <Typography fontWeight='bold' component='div'>
                     No more moves :(
                 </Typography>}
-            <p>(Click on the board to make the arrow keys work)</p>
             <Grid container direction='row' justifyContent='space-between' maxWidth='450px'>
                 <Grid item flexShrink={0} pr='1rem'>
                     <Button

@@ -4,8 +4,6 @@
 
 ## Todo
 
-- Replace CSS transition styles with JSS/Material-UI styling framework
-
 - improve page styling/customize theme
 
 - Improve tile graphics

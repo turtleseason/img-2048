@@ -87,7 +87,6 @@ export default function GameBoard({ onWin, onLose }: Props) {
 
     return (
         <Box
-            tabIndex={-1}
             width={PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing}
             height={PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing}
             bgcolor='primary.dark'
@@ -99,8 +98,9 @@ export default function GameBoard({ onWin, onLose }: Props) {
                 {
                     // Sort tiles by ID when rendering to keep them in a consistent order (to avoid messing up CSS transitions),
                     // but also keep track of the original index from 'tiles' which is needed to set the row/column position
-                    tiles.map((tile, index) => ({ index, tile }))
-                        .sort((a, b) => (a.tile && b.tile) ? a.tile.id - b.tile.id : (a.tile ? 1 : 0))
+                    tiles.map((tile, index) => ({ tile, index }))
+                        .filter(x => !!x.tile)
+                        .sort((a, b) => a.tile!.id - b.tile!.id)
                         .map(({ tile, index }) => tile ? (
                             <GameTile
                                 key={tile.id}
