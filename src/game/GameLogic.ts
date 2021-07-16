@@ -145,3 +145,32 @@ const moveLeft = (tiles: (Tile | null)[]) => {
 
     return { moved, highestMerge };
 }
+
+export const hasPossibleMoves = (tiles: (Tile | null)[]) => {
+    for (let i = 0; i < PUZZLE_SIZE ** 2; i++) {
+        if (!tiles[i]) {
+            return true;
+        }
+
+        for (const neighbor of neighbors(i)) {
+            if (!tiles[neighbor] || tiles[neighbor]!.value === tiles[i]!.value) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+// Returns indices of all adjacent tiles (top, left, bottom, right) within board bounds.
+const neighbors = (index: number) => {
+    const col = colFromIndex(index);
+    const row = rowFromIndex(index);
+
+    const neighbors = [];
+    if (col > 0) neighbors.push(indexFromCoords(col - 1, row));
+    if (row > 0) neighbors.push(indexFromCoords(col, row - 1));
+    if (col < PUZZLE_SIZE - 1) neighbors.push(indexFromCoords(col + 1, row));
+    if (row < PUZZLE_SIZE - 1) neighbors.push(indexFromCoords(col, row + 1));
+
+    return neighbors;
+}

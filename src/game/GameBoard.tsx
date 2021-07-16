@@ -5,7 +5,10 @@ import { TransitionGroup } from 'react-transition-group';
 
 import { useMountEffect } from '../hooks/useMountEffect';
 import { Tile } from '../types/tile';
-import { arrowKeys, BASE_VALUE, colFromIndex, getNextValue, getOpenPosition, move, PUZZLE_SIZE, rowFromIndex } from './GameLogic';
+import {
+    BASE_VALUE, PUZZLE_SIZE, arrowKeys, colFromIndex, rowFromIndex,
+    getNextValue, getOpenPosition, hasPossibleMoves, move
+} from './GameLogic';
 import GameTile from './GameTile';
 
 const prefetchImages = () => {
@@ -33,10 +36,10 @@ export default function GameBoard({ onWin, onLose }: Props) {
             setNextId(nextId + 1);
         }
         else {
-            onLose();
+            console.error('spawnTiles: Tried to add tile to full board');
         }
         return newTiles;
-    }, [nextId, onLose]);
+    }, [nextId]);
 
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
         if (e.key in arrowKeys) {
@@ -56,13 +59,17 @@ export default function GameBoard({ onWin, onLose }: Props) {
                         const newTiles = spawnTile(result.tiles);
                         setTiles(newTiles);
                         setCanMove(true);
+
+                        if (!hasPossibleMoves(newTiles)) {
+                            onLose();
+                        }
                     }, 150);
                 } else {
                     setCanMove(true);
                 }
             }
         }
-    }, [canMove, onWin, spawnTile, tiles]);
+    }, [canMove, onLose, onWin, spawnTile, tiles]);
 
     useMountEffect(() => {
         prefetchImages();
