@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 
 import Box from '@material-ui/core/Box';
 import { useMountEffect } from '../hooks/useMountEffect';
 import { Tile } from '../types/tile';
 import { arrowKeys, BASE_VALUE, colFromIndex, getNextValue, getOpenPosition, move, PUZZLE_SIZE, rowFromIndex } from './GameLogic';
 import GameTile from './GameTile';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { TransitionGroup } from 'react-transition-group';
 
 const prefetchImages = () => {
     for (const i of [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]) {
@@ -90,21 +90,14 @@ export default function GameBoard({ onWin, onLose }: Props) {
                     tiles.map((tile, index) => ({ index, tile }))
                         .sort((a, b) => (a.tile && b.tile) ? a.tile.id - b.tile.id : (a.tile ? 1 : 0))
                         .map(({ tile, index }) => tile ? (
-                            <CSSTransition
-                                classNames='fade'
-                                appear
-                                timeout={100}
+                            <GameTile
                                 key={tile.id}
-                            >
-                                <GameTile
-                                    size={tileSize}
-                                    spacing={tileSpacing}
-                                    row={rowFromIndex(index)}
-                                    column={colFromIndex(index)}
-                                    value={tile.value}
-                                    keyStr={tile.id}
-                                />
-                            </CSSTransition>
+                                size={tileSize}
+                                spacing={tileSpacing}
+                                row={rowFromIndex(index)}
+                                column={colFromIndex(index)}
+                                value={tile.value}
+                            />
                         ) : null)}
             </TransitionGroup>
         </Box>
