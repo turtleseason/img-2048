@@ -12,7 +12,13 @@ import Switch from '@material-ui/core/Switch';
 import BrightnessMediumIcon from '@material-ui/icons/BrightnessMedium';
 import ImageIcon from '@material-ui/icons/Image';
 
-export default function SettingsDrawer({ isOpen, setOpen, openImageDialog }) {
+interface Props {
+    isOpen: boolean;
+    setOpen: (isOpen: boolean) => void;
+    setImageDialogOpen: (isOpen: boolean) => void;
+}
+
+export default function SettingsDrawer({ isOpen, setOpen, setImageDialogOpen }: Props) {
     const [checked, setChecked] = useState(false);
 
     return (
@@ -40,9 +46,9 @@ export default function SettingsDrawer({ isOpen, setOpen, openImageDialog }) {
 
                 <ListItemButton
                     sx={{ pr: '1.5rem' }}
-                    onClick={() => { 
+                    onClick={() => {
                         setOpen(false);
-                        openImageDialog(true);
+                        setImageDialogOpen(true);
                     }}
                 >
                     <ListItemIcon>

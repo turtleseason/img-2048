@@ -4,11 +4,7 @@
 
 ## Todo
 
-- Register key event listener on document instead of game board
-
-- Transitions: fix findDOMNode error; replace CSS styles with JSS/Material-UI styling framework
-
-- Convert all JS files to TypeScript
+- Replace CSS transition styles with JSS/Material-UI styling framework
 
 - improve page styling/customize theme
 

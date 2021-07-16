@@ -35,7 +35,7 @@ export default function App() {
                 </Toolbar>
             </AppBar>
 
-            <SettingsDrawer isOpen={menuOpen} setOpen={setMenuOpen} openImageDialog={setDialogOpen} />
+            <SettingsDrawer isOpen={menuOpen} setOpen={setMenuOpen} setImageDialogOpen={setDialogOpen} />
 
             <ImageDialog isOpen={dialogOpen} setOpen={setDialogOpen} />
 
