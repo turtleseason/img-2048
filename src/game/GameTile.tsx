@@ -1,7 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import './temp.css';
-import { CSSTransition } from 'react-transition-group';
+import Fade from '@material-ui/core/Fade';
 
 // const customValues = {
 //     2: 115,
@@ -26,18 +25,9 @@ interface Props {
 }
 
 const GameTile = ({ value, row, column, size, spacing, ...rest }: Props) => {
-    const nodeRef = React.useRef(null);
-
     return (
-        <CSSTransition
-            {...rest}
-            nodeRef={nodeRef}
-            classNames='fade'
-            appear
-            timeout={100}
-        >
+        <Fade {...rest} timeout={100} >
             <Box
-                ref={nodeRef}
                 position='absolute'
                 top={row * size + (row + 1) * spacing}
                 left={column * size + (column + 1) * spacing}
@@ -53,12 +43,12 @@ const GameTile = ({ value, row, column, size, spacing, ...rest }: Props) => {
                 sx={{
                     backgroundImage: `url('/assets/tile${value}.png')`,
                     backgroundSize: 'cover',
-                    transition: 'opacity .10s, top .25s, left .25s'
+                    transition: 'opacity .10s, top .25s, left .25s !important'
                 }}>
                 {/* {// @ts-ignore
                 value in customValues ? (customValues[value]) : value} */}
             </Box>
-        </CSSTransition>
+        </Fade>
     )
 }
 
