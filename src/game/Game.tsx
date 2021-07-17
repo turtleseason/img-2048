@@ -17,6 +17,7 @@ export default function Game() {
     const newGame = () => {
         setGame(game + 1);
         setWon(false);
+        setLose(false);
     }
 
     return (

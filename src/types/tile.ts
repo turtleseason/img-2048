@@ -1,8 +1,8 @@
 export class Tile {
     id: number;
-    value: any;
+    value: number;
 
-    constructor(id: number, value: any) {
+    constructor(id: number, value: number) {
         this.id = id;
         this.value = value;
     }

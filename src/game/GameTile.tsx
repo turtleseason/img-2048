@@ -19,7 +19,7 @@ import images from '../assets/images';
 
 const imageUrl = (value: number) => {
     // @ts-ignore
-    return images[`tile${value}`];
+    return images[`tile${value}`] ?? images['tile2048'];
 }
 
 interface Props {
@@ -30,7 +30,7 @@ interface Props {
     spacing: number;
 }
 
-const GameTile = ({ value, row, column, size, spacing, ...rest }: Props) => {
+export default function GameTile({ value, row, column, size, spacing, ...rest }: Props) {
     return (
         <Fade {...rest} timeout={100} >
             <Box
@@ -56,5 +56,3 @@ const GameTile = ({ value, row, column, size, spacing, ...rest }: Props) => {
         </Fade>
     )
 }
-
-export default GameTile;
