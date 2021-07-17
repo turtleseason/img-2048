@@ -1,6 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import Fade from '@material-ui/core/Fade';
+import images from '../assets/images';
 
 // const customValues = {
 //     2: 115,
@@ -15,6 +16,11 @@ import Fade from '@material-ui/core/Fade';
 //     1024: '1',
 //     2048: '0',
 // };
+
+const imageUrl = (value: number) => {
+    // @ts-ignore
+    return images[`tile${value}`];
+}
 
 interface Props {
     value: number;
@@ -32,7 +38,6 @@ const GameTile = ({ value, row, column, size, spacing, ...rest }: Props) => {
                 top={row * size + (row + 1) * spacing}
                 left={column * size + (column + 1) * spacing}
                 width={size}
-
                 height={size}
                 borderRadius={`${spacing / 2}px`}
                 bgcolor='primary.light'
@@ -41,7 +46,7 @@ const GameTile = ({ value, row, column, size, spacing, ...rest }: Props) => {
                 justifyContent='center'
                 alignItems='end'
                 sx={{
-                    backgroundImage: `url('/assets/tile${value}.png')`,
+                    backgroundImage: `url(${imageUrl(value)})`,
                     backgroundSize: 'cover',
                     transition: 'opacity .10s, top .25s, left .25s !important'
                 }}>

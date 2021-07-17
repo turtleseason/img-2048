@@ -5,6 +5,8 @@ import { TransitionGroup } from 'react-transition-group';
 
 import { useMountEffect } from '../hooks/useMountEffect';
 import { Tile } from '../types/tile';
+import images from '../assets/images';
+
 import {
     BASE_VALUE, PUZZLE_SIZE, arrowKeys, colFromIndex, rowFromIndex,
     getNextValue, getOpenPosition, hasPossibleMoves, move
@@ -12,8 +14,9 @@ import {
 import GameTile from './GameTile';
 
 const prefetchImages = () => {
-    for (const i of [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]) {
-        new Image().src = `/assets/tile${i}.png`;
+    for (const image in images) {
+        // @ts-ignore
+        new Image().src = images[image];
     }
 }
 
