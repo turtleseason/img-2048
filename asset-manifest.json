@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.js": "/img-2048/static/js/main.56ab02b5.chunk.js",
+    "main.js.map": "/img-2048/static/js/main.56ab02b5.chunk.js.map",
+    "runtime-main.js": "/img-2048/static/js/runtime-main.5eb46884.js",
+    "runtime-main.js.map": "/img-2048/static/js/runtime-main.5eb46884.js.map",
+    "static/css/2.66172d32.chunk.css": "/img-2048/static/css/2.66172d32.chunk.css",
+    "static/js/2.3660ba7d.chunk.js": "/img-2048/static/js/2.3660ba7d.chunk.js",
+    "static/js/2.3660ba7d.chunk.js.map": "/img-2048/static/js/2.3660ba7d.chunk.js.map",
+    "static/js/3.56166048.chunk.js": "/img-2048/static/js/3.56166048.chunk.js",
+    "static/js/3.56166048.chunk.js.map": "/img-2048/static/js/3.56166048.chunk.js.map",
+    "index.html": "/img-2048/index.html",
+    "static/css/2.66172d32.chunk.css.map": "/img-2048/static/css/2.66172d32.chunk.css.map",
+    "static/js/2.3660ba7d.chunk.js.LICENSE.txt": "/img-2048/static/js/2.3660ba7d.chunk.js.LICENSE.txt",
+    "static/media/300.css": "/img-2048/static/media/roboto-vietnamese-300-normal.af9afdc1.woff2",
+    "static/media/400.css": "/img-2048/static/media/roboto-vietnamese-400-normal.c0bec65d.woff2",
+    "static/media/500.css": "/img-2048/static/media/roboto-vietnamese-500-normal.b8e494da.woff2",
+    "static/media/700.css": "/img-2048/static/media/roboto-vietnamese-700-normal.3096f18a.woff2",
+    "static/media/tile1024.afeba609.png": "/img-2048/static/media/tile1024.afeba609.png",
+    "static/media/tile128.7b283e7a.png": "/img-2048/static/media/tile128.7b283e7a.png",
+    "static/media/tile16.b16a6421.png": "/img-2048/static/media/tile16.b16a6421.png",
+    "static/media/tile2.7c00f168.png": "/img-2048/static/media/tile2.7c00f168.png",
+    "static/media/tile2048.e7247b69.png": "/img-2048/static/media/tile2048.e7247b69.png",
+    "static/media/tile256.a90db0cf.png": "/img-2048/static/media/tile256.a90db0cf.png",
+    "static/media/tile32.f75c1227.png": "/img-2048/static/media/tile32.f75c1227.png",
+    "static/media/tile4.e23e327d.png": "/img-2048/static/media/tile4.e23e327d.png",
+    "static/media/tile512.2664c8f0.png": "/img-2048/static/media/tile512.2664c8f0.png",
+    "static/media/tile64.1a2f41ea.png": "/img-2048/static/media/tile64.1a2f41ea.png",
+    "static/media/tile8.51e6ee33.png": "/img-2048/static/media/tile8.51e6ee33.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5eb46884.js",
+    "static/css/2.66172d32.chunk.css",
+    "static/js/2.3660ba7d.chunk.js",
+    "static/js/main.56ab02b5.chunk.js"
+  ]
+}
