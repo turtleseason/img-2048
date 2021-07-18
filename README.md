@@ -1,16 +1,19 @@
 # 11532337202...?
 
-2048 clone (WIP)
+2048 clone. Originally a quick project to try out Material-UI, and then it became Infinity Train...?
+
+https://turtleseason.github.io/img-2048/
 
 ## Todo
 
-- improve page styling/customize theme
+- Make playable on mobile
+  - Make responsive (at least scale down on small screens, maybe scale up a bit on large ones?)
+
+  - Swipe gestures? Or some other alternative to keyboard input
 
 - Implement custom tile images
 
-- Make game board responsive?
-
-- ~ and more ~
+- Better image prefetching?
 
 ## Tools + frameworks used
 
