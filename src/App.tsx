@@ -4,10 +4,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Container from '@material-ui/core/Container';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
-import Game from './game/Game';
+import Game from './game/GameContainer';
 import ImageDialog from './ImageDialog';
 import SettingsDrawer from './SettingsDrawer';
 
@@ -18,20 +18,25 @@ export default function App() {
     return (
         <>
             <AppBar position='static'>
-                <Toolbar>
+                <Toolbar sx={{ color: 'primary.main', justifyContent: 'space-between' }}>
                     <IconButton
+                        onClick={() => setMenuOpen(true)}
                         size='large'
                         edge='start'
                         color='inherit'
                         aria-label='Menu'
-                        sx={{ mr: 2 }}
-                        onClick={() => setMenuOpen(true)}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-                        2048
-                    </Typography>
+                    <IconButton
+                        href='https://github.com/turtleseason/img-2048'
+                        size='large'
+                        edge='end'
+                        color='inherit'
+                        aria-label='Github repository'
+                    >
+                        <GitHubIcon />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
 
@@ -39,13 +44,7 @@ export default function App() {
 
             <ImageDialog isOpen={dialogOpen} setOpen={setDialogOpen} />
 
-            <Container
-                sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    my: '.5rem',
-                }}
-            >
+            <Container sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Game />
             </Container>
         </>

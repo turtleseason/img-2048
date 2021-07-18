@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import Box from '@material-ui/core/Box';
+import Paper from '@material-ui/core/Paper';
 import { TransitionGroup } from 'react-transition-group';
 
 import { useMountEffect } from '../hooks/useMountEffect';
 import { Tile } from '../types/tile';
 import images from '../assets/images';
-
 import {
     BASE_VALUE, PUZZLE_SIZE, arrowKeys, colFromIndex, rowFromIndex,
     getNextValue, getOpenPosition, hasPossibleMoves, move
@@ -23,9 +22,10 @@ const prefetchImages = () => {
 interface Props {
     onWin: () => void;
     onLose: () => void;
+    won: boolean;
 }
 
-export default function GameBoard({ onWin, onLose }: Props) {
+export default function GameBoard({ onWin, onLose, won }: Props) {
     const [tiles, setTiles] = useState<(Tile | null)[]>(new Array(PUZZLE_SIZE ** 2).fill(null));
     const [nextId, setNextId] = useState(1);
     const [canMove, setCanMove] = useState(false);
@@ -89,13 +89,16 @@ export default function GameBoard({ onWin, onLose }: Props) {
     const tileSpacing = 10;
 
     return (
-        <Box
-            width={PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing}
-            height={PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing}
-            bgcolor='primary.dark'
-            padding={tileSpacing}
-            position='relative'
-            borderRadius={`${tileSpacing}px`}
+        <Paper
+            elevation={2}
+            sx={{
+                width: PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing,
+                height: PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing,
+                bgcolor: 'grey.800',
+                position: 'relative',
+                borderRadius: `${tileSpacing}px`,
+                ...(won && { boxShadow: '0 0 10px 4px #c5e1a5' })
+            }}
         >
             <TransitionGroup component={null}>
                 {
@@ -115,6 +118,6 @@ export default function GameBoard({ onWin, onLose }: Props) {
                             />
                         ) : null)}
             </TransitionGroup>
-        </Box>
+        </Paper>
     )
 }

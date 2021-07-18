@@ -3,19 +3,36 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import { CssBaseline } from '@material-ui/core';
+import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
+import { lightGreen } from '@material-ui/core/colors';
 
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 
+const theme = createTheme({
+    palette: {
+        mode: 'dark',
+        primary: {
+            main: lightGreen[200],
+        },
+        tonalOffset:
+        {
+            light: .4,
+            dark: .2,
+        },
+    }
+});
+
 ReactDOM.render(
     <React.StrictMode>
-        <>
-            <CssBaseline />
-            <App />
-        </>
+        <ThemeProvider theme={theme}>
+            <>
+                <CssBaseline />
+                <App />
+            </>
+        </ThemeProvider>
     </React.StrictMode>,
     document.getElementById('root')
 );

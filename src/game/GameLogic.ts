@@ -35,6 +35,22 @@ export const getNextValue = (value?: any) => {
     return value * BASE_VALUE;
 }
 
+// // Spawns random tiles (for testing)
+// export const getNextValue = (value?: any) => {
+//     const x = Math.random();
+//     if (x < .50) return 2;
+//     if (x < .70) return 4;
+//     if (x < .80) return 8;
+//     if (x < .88) return 16;
+//     if (x < .92) return 32;
+//     if (x < .94) return 64;
+//     if (x < .96) return 128;
+//     if (x < .97) return 256;
+//     if (x < .98) return 512;
+//     if (x < .99) return 1024;
+//     return 2048;
+// }
+
 // Returns the index of a random empty position on the board, or -1 if the board is full.
 export const getOpenPosition = (tiles: (Tile | null)[]): number => {
     const tileCount = count(tiles);
