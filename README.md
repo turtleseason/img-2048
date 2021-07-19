@@ -6,11 +6,6 @@ https://turtleseason.github.io/img-2048/
 
 ## Todo
 
-- Make playable on mobile
-  - Make responsive (at least scale down on small screens, maybe scale up a bit on large ones?)
-
-  - Swipe gestures? Or some other alternative to keyboard input
-
 - Implement custom tile images
 
 - Better image prefetching?
@@ -21,3 +16,4 @@ https://turtleseason.github.io/img-2048/
 - App bootstrapping: [create-react-app](https://github.com/facebook/create-react-app)
 - Favicons: https://realfavicongenerator.net
 - Github Pages deploy: [gh-pages](https://github.com/tschaub/gh-pages)
+- Swipe gestures: [react-swipeable](https://github.com/FormidableLabs/react-swipeable)

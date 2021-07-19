@@ -2,10 +2,12 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import Paper from '@material-ui/core/Paper';
 import { TransitionGroup } from 'react-transition-group';
+import { useSwipeable } from 'react-swipeable';
 
 import { BASE_VALUE, PUZZLE_SIZE, BOARD_SIZE, MAX_BOARD_SIZE, MAX_TILE_SPACING } from './constants';
 import { useMountEffect } from '../hooks/useMountEffect';
 import { Tile } from '../types/tile';
+import { Direction, Directions } from '../types/direction';
 import images from '../assets/images';
 import {
     arrowKeys, colFromIndex, rowFromIndex, getNextValue,
@@ -45,35 +47,48 @@ export default function GameBoard({ onWin, onLose, won }: Props) {
         return newTiles;
     }, [nextId]);
 
+    const handleMove = useCallback((direction: Direction) => {
+        if (!canMove) {
+            return;
+        }
+
+        setCanMove(false);
+        const result = move(direction, tiles.slice());
+        setTiles(result.tiles);
+
+        if (result.highestMerge === BASE_VALUE ** 11) {
+            onWin();
+        }
+
+        if (result.moved) {
+            setTimeout(() => {
+                const newTiles = spawnTile(result.tiles);
+                setTiles(newTiles);
+                setCanMove(true);
+
+                if (!hasPossibleMoves(newTiles)) {
+                    onLose();
+                }
+            }, 150);
+        } else {
+            setCanMove(true);
+        }
+    }, [canMove, onLose, onWin, spawnTile, tiles]);
+
     const handleKeyDown = useCallback((e: KeyboardEvent) => {
         if (e.key in arrowKeys) {
             e.preventDefault();
-
-            if (canMove) {
-                setCanMove(false);
-                const result = move(arrowKeys[e.key as keyof typeof arrowKeys], tiles.slice());
-                setTiles(result.tiles);
-
-                if (result.highestMerge === BASE_VALUE ** 11) {
-                    onWin();
-                }
-
-                if (result.moved) {
-                    setTimeout(() => {
-                        const newTiles = spawnTile(result.tiles);
-                        setTiles(newTiles);
-                        setCanMove(true);
-
-                        if (!hasPossibleMoves(newTiles)) {
-                            onLose();
-                        }
-                    }, 150);
-                } else {
-                    setCanMove(true);
-                }
-            }
+            handleMove(arrowKeys[e.key as keyof typeof arrowKeys]);
         }
-    }, [canMove, onLose, onWin, spawnTile, tiles]);
+    }, [handleMove]);
+
+    const swipeHandlers = useSwipeable({
+        onSwipedLeft: () => handleMove(Directions.Left),
+        onSwipedRight: () => handleMove(Directions.Right),
+        onSwipedUp: () => handleMove(Directions.Up),
+        onSwipedDown: () => handleMove(Directions.Down),
+        preventDefaultTouchmoveEvent: true,
+    });
 
     useMountEffect(() => {
         prefetchImages();
@@ -100,6 +115,7 @@ export default function GameBoard({ onWin, onLose, won }: Props) {
                 borderRadius: MAX_TILE_SPACING + 'px',
                 ...(won && { boxShadow: '0 0 10px 4px #c5e1a5' })
             }}
+            {...swipeHandlers}
         >
             <TransitionGroup component={null}>
                 {

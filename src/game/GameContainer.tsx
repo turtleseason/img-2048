@@ -95,7 +95,7 @@ export default function Game() {
                         </Button>
                     </Grid>
                     <Grid item xs={12} sm sx={{ '& p': { m: 0 } }}>
-                        <p>Use the arrow keys to move the tiles. Merge matching tiles together to reach the 2048(?) tile!</p>
+                        <p>Use the arrow keys or swipe on the board to move the tiles. Merge matching tiles together to reach the 2048(?) tile!</p>
                     </Grid>
                 </Grid>
             </Stack>

@@ -39,11 +39,13 @@ const useStyles = makeStyles(({
         justifyContent: 'center',
         alignItems: 'center',
         transition: 'opacity .10s, top .25s, left .25s !important',
+        touchAction: 'none',
         '& span': {
             maxWidth: '100%',
             overflowWrap: 'break-word',
             lineHeight: 1,
         },
+
     }
 }));
 
@@ -79,7 +81,7 @@ export default function GameTile({ value, row, col, ...rest }: Props) {
                 {showTileNumbers ? (
                     <span>{text}</span>
                 ) : (
-                    <img src={imageUrl} width='100%' alt={text} />
+                    <img src={imageUrl} width='100%' alt={text} onDragStart={(e) => e.preventDefault()} />
                 )}
             </Box>
         </Fade>
