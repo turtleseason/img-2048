@@ -3,12 +3,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import { TransitionGroup } from 'react-transition-group';
 
+import { BASE_VALUE, PUZZLE_SIZE, BOARD_SIZE, MAX_BOARD_SIZE, MAX_TILE_SPACING } from './constants';
 import { useMountEffect } from '../hooks/useMountEffect';
 import { Tile } from '../types/tile';
 import images from '../assets/images';
 import {
-    BASE_VALUE, PUZZLE_SIZE, arrowKeys, colFromIndex, rowFromIndex,
-    getNextValue, getOpenPosition, hasPossibleMoves, move
+    arrowKeys, colFromIndex, rowFromIndex, getNextValue,
+    getOpenPosition, hasPossibleMoves, move
 } from './GameLogic';
 import GameTile from './GameTile';
 
@@ -85,18 +86,18 @@ export default function GameBoard({ onWin, onLose, won }: Props) {
         return () => document.removeEventListener('keydown', handleKeyDown);
     }, [handleKeyDown]);
 
-    const tileSize = 100;
-    const tileSpacing = 10;
-
     return (
         <Paper
             elevation={2}
             sx={{
-                width: PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing,
-                height: PUZZLE_SIZE * (tileSize + tileSpacing) + tileSpacing,
-                bgcolor: 'grey.800',
+                alignSelf: 'center',
+                width: BOARD_SIZE + 'vw',
+                height: BOARD_SIZE + 'vw',
+                maxWidth: MAX_BOARD_SIZE,
+                maxHeight: MAX_BOARD_SIZE,
+                bgcolor: 'grey.900',
                 position: 'relative',
-                borderRadius: `${tileSpacing}px`,
+                borderRadius: MAX_TILE_SPACING + 'px',
                 ...(won && { boxShadow: '0 0 10px 4px #c5e1a5' })
             }}
         >
@@ -110,10 +111,8 @@ export default function GameBoard({ onWin, onLose, won }: Props) {
                         .map(({ tile, index }) => tile ? (
                             <GameTile
                                 key={tile.id}
-                                size={tileSize}
-                                spacing={tileSpacing}
                                 row={rowFromIndex(index)}
-                                column={colFromIndex(index)}
+                                col={colFromIndex(index)}
                                 value={tile.value}
                             />
                         ) : null)}

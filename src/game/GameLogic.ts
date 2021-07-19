@@ -3,9 +3,7 @@
 import { Direction, Directions } from "../types/direction";
 import { Tile } from "../types/tile";
 import { count, randomInt } from "../util";
-
-export const PUZZLE_SIZE = 4;
-export const BASE_VALUE = 2;
+import { BASE_VALUE, PUZZLE_SIZE } from "./constants";
 
 export const arrowKeys = {
     'ArrowLeft': Directions.Left,
