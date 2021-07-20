@@ -113,6 +113,7 @@ export default function GameBoard({ onWin, onLose, won }: Props) {
                 bgcolor: 'grey.900',
                 position: 'relative',
                 borderRadius: MAX_TILE_SPACING + 'px',
+                touchAction: 'none',
                 ...(won && { boxShadow: '0 0 10px 4px #c5e1a5' })
             }}
             {...swipeHandlers}
