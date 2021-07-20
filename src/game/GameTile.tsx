@@ -76,7 +76,7 @@ export default function GameTile({ value, row, col, ...rest }: Props) {
                 className={classes.tile}
                 top={row * size + (row + 1) * spacing + unit}
                 left={col * size + (col + 1) * spacing + unit}
-                bgcolor='primary.main'
+                bgcolor='background.paper'
             >
                 {showTileNumbers ? (
                     <span>{text}</span>

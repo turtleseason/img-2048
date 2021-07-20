@@ -51,7 +51,7 @@ export default function Game() {
             />
 
             <Stack spacing={2} width={BOARD_SIZE + 'vw'} maxWidth={MAX_BOARD_SIZE} sx={{ my: 3 }} >
-                <img src={Logo} alt="(Logo) 11532337202" />
+                <img src={Logo} alt="(Logo) 11532337202" width='100%' />
                 <Collapse in={won} timeout={1000} sx={{ alignSelf: 'center', transitionDelay: '500' }}>
                     <Stack
                         role='status'
