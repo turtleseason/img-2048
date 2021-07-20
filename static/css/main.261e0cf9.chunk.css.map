@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/index.css"],"names":[],"mappings":"AAAA,sBACI,UAAW,CACX,WAAY,CACZ,QAAS,CACT,SACJ,CAEA,YACI,aACJ","file":"main.261e0cf9.chunk.css","sourcesContent":["html, body, #scroll-div {\r\n    width: 100%;\r\n    height: 100%;\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n\r\n#scroll-div {\r\n    overflow: auto;\r\n}"]}
