@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
@@ -16,11 +16,11 @@ interface Props {
     isOpen: boolean;
     setOpen: (isOpen: boolean) => void;
     setImageDialogOpen: (isOpen: boolean) => void;
+    darkMode: boolean;
+    setDarkMode: (on: boolean) => void;
 }
 
-export default function SettingsDrawer({ isOpen, setOpen, setImageDialogOpen }: Props) {
-    const [checked, setChecked] = useState(false);
-
+export default function SettingsDrawer({ isOpen, setOpen, setImageDialogOpen, darkMode, setDarkMode }: Props) {
     return (
         <Drawer
             anchor='left'
@@ -28,18 +28,18 @@ export default function SettingsDrawer({ isOpen, setOpen, setImageDialogOpen }: 
             onClose={() => setOpen(false)}
         >
             <List
-                subheader={(<ListSubheader>Settings</ListSubheader>)}
+                subheader={(<ListSubheader sx={{ backgroundColor: 'transparent' }}>Settings</ListSubheader>)}
                 sx={{ mx: '.5rem' }}
             >
-                <ListItem divider={true}>
+                <ListItem divider={true} >
                     <ListItemIcon>
                         <BrightnessMediumIcon />
                     </ListItemIcon>
-                    <ListItemText id='switch-setting' primary='Setting' />
+                    <ListItemText id='switch-setting' primary='Light mode' />
                     <Switch
                         edge='end'
-                        checked={checked}
-                        onChange={() => setChecked(!checked)}
+                        checked={!darkMode}
+                        onChange={() => setDarkMode(!darkMode)}
                         inputProps={{ 'aria-labelledby': 'switch-setting' }}
                     />
                 </ListItem>

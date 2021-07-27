@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Stack from '@material-ui/core/Stack';
@@ -41,6 +42,9 @@ export default function Game() {
         }
     }
 
+    const theme = useTheme();
+    const textColor = theme.palette.mode === 'dark' ? 'primary.light' : 'text.primary';
+
     return (
         <>
             <ConfirmationDialog
@@ -58,7 +62,7 @@ export default function Game() {
                         direction='row'
                         alignItems='center'
                         spacing={.5}
-                        sx={{ color: 'primary.light' }}
+                        sx={{ color: textColor }}
                     >
                         <Typography variant='h6' component='div'>
                             You won! congrat
@@ -70,7 +74,7 @@ export default function Game() {
                 <GameBoard key={game} onWin={() => setWon(true)} onLose={() => setLose(true)} won={won} />
 
                 <Collapse in={lose} timeout={1000} sx={{ transitionDelay: '500' }}>
-                    <Typography role='status' fontWeight='bold' component='div' color='primary.light'>
+                    <Typography role='status' fontWeight='bold' component='div' color={textColor} sx={{ ml: .25 }}>
                         No more moves :(
                     </Typography>
                 </Collapse>

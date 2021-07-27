@@ -14,6 +14,7 @@ import {
     getOpenPosition, hasPossibleMoves, move
 } from './GameLogic';
 import GameTile from './GameTile';
+import { useTheme } from '@material-ui/core/styles';
 
 const prefetchImages = () => {
     for (const image in images) {
@@ -101,6 +102,8 @@ export default function GameBoard({ onWin, onLose, won }: Props) {
         return () => document.removeEventListener('keydown', handleKeyDown);
     }, [handleKeyDown]);
 
+    const theme = useTheme();
+
     return (
         <Paper
             elevation={2}
@@ -110,7 +113,7 @@ export default function GameBoard({ onWin, onLose, won }: Props) {
                 height: BOARD_SIZE + 'vw',
                 maxWidth: MAX_BOARD_SIZE,
                 maxHeight: MAX_BOARD_SIZE,
-                bgcolor: 'grey.900',
+                bgcolor: theme.palette.mode === 'dark' ? 'grey.900' : 'primary.light',
                 position: 'relative',
                 borderRadius: MAX_TILE_SPACING + 'px',
                 touchAction: 'none',
