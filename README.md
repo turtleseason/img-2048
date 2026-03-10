@@ -4,11 +4,7 @@
 
 https://turtleseason.github.io/img-2048/
 
-## Todo
-
-- Implement custom tile images
-
-- Better image prefetching?
+![image](2048_screenshot.png)
 
 ## Tools + frameworks used
 
